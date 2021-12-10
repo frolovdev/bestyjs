@@ -8,16 +8,21 @@ export async function handleRequest(request: Request, env: Bindings) {
   }
 
   // Forward the request to the named Durable Object...
-  const { COUNTER } = env;
-  const id = COUNTER.idFromName(match.groups.name);
-  const stub = COUNTER.get(id);
-  // ...removing the name prefix from URL
-  url.pathname = match.groups.action;
-  return stub.fetch(url.toString());
+  // const { COUNTER } = env;
+  // const id = COUNTER.idFromName(match.groups.name);
+  // const stub = COUNTER.get(id);
+  // // ...removing the name prefix from URL
+  // url.pathname = match.groups.action;
+
+  const json = JSON.stringify({}, null, 2);
+  return new Response(json, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  });
 }
 
 const worker: ExportedHandler<Bindings> = { fetch: handleRequest };
 
-// Make sure we export the Counter Durable Object class
-export { Counter } from "./counter";
 export default worker;

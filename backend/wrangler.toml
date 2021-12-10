@@ -9,11 +9,6 @@ zone_id = ""
 compatibility_date = "2021-12-10"
 compatibility_flags = []
 
-[durable_objects]
-bindings = [
-  { name = "COUNTER", class_name = "Counter" }
-]
-
 [build]
 command = "npm run build"
 

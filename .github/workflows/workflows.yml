@@ -10,6 +10,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Go to frontend
+        run: cd frontend
+      - name: Read nvmrc
+        id: read-nvmrc
+        run: echo "::set-output name=version::$(cat .nvmrc)"
+        shell: bash
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.read-nvmrc.outputs.version }}y
+      
       - name: Install modules
         run: yarn
       - name: Compile code

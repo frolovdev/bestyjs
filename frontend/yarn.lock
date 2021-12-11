@@ -4011,6 +4011,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bestyjs-client@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "bestyjs-client@workspace:."
+  dependencies:
+    "@borodutch-labs/localize-react": ^1.7.4
+    "@preact/preset-vite": ^2.1.5
+    "@types/node": ^16.11.12
+    "@types/react": ^17.0.37
+    "@typescript-eslint/eslint-plugin": ^5.6.0
+    "@typescript-eslint/parser": ^5.6.0
+    "@vitejs/plugin-react": ^1.1.1
+    autoprefixer: ^9
+    cross-env: ^7.0.3
+    eslint: ^8.4.1
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-import: ^2.25.3
+    eslint-plugin-no-relative-import-paths: ^1.0.8
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.27.1
+    eslint-plugin-react-hooks: ^4.3.0
+    eslint-plugin-sort-imports-es6-autofix: ^0.6.0
+    eslint-plugin-valtio: ^0.4.1
+    postcss: ^7
+    preact: ^10.6.2
+    prettier: ^2.5.1
+    react-scripts: ^4.0.3
+    rollup-plugin-visualizer: ^5.5.2
+    tailwindcss: "npm:@tailwindcss/postcss7-compat@^2"
+    tailwindcss-classnames: ^2.2.6
+    typescript: ^4.5.2
+    unfetch: ^4.2.0
+    valtio: ^1.2.7
+    vite: ^2.7.1
+    vite-tsconfig-paths: ^3.3.17
+  languageName: unknown
+  linkType: soft
+
 "bfj@npm:^7.0.2":
   version: 7.0.2
   resolution: "bfj@npm:7.0.2"
@@ -7588,43 +7625,6 @@ __metadata:
   checksum: 6080eba0793dce32f475141fb3d54cc15f84ee52e420ee22ac3ab0ad639dc95a1875bc6eb9c0e1140e94972a36a89dc5542491b85f1ab8df0c126241e0f1a61b
   languageName: node
   linkType: hard
-
-"frontend-starter@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "frontend-starter@workspace:."
-  dependencies:
-    "@borodutch-labs/localize-react": ^1.7.4
-    "@preact/preset-vite": ^2.1.5
-    "@types/node": ^16.11.12
-    "@types/react": ^17.0.37
-    "@typescript-eslint/eslint-plugin": ^5.6.0
-    "@typescript-eslint/parser": ^5.6.0
-    "@vitejs/plugin-react": ^1.1.1
-    autoprefixer: ^9
-    cross-env: ^7.0.3
-    eslint: ^8.4.1
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-import: ^2.25.3
-    eslint-plugin-no-relative-import-paths: ^1.0.8
-    eslint-plugin-prettier: ^4.0.0
-    eslint-plugin-react: ^7.27.1
-    eslint-plugin-react-hooks: ^4.3.0
-    eslint-plugin-sort-imports-es6-autofix: ^0.6.0
-    eslint-plugin-valtio: ^0.4.1
-    postcss: ^7
-    preact: ^10.6.2
-    prettier: ^2.5.1
-    react-scripts: ^4.0.3
-    rollup-plugin-visualizer: ^5.5.2
-    tailwindcss: "npm:@tailwindcss/postcss7-compat@^2"
-    tailwindcss-classnames: ^2.2.6
-    typescript: ^4.5.2
-    unfetch: ^4.2.0
-    valtio: ^1.2.7
-    vite: ^2.7.1
-    vite-tsconfig-paths: ^3.3.17
-  languageName: unknown
-  linkType: soft
 
 "fs-extra@npm:^10.0.0":
   version: 10.0.0

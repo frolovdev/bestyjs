@@ -1,11 +1,10 @@
 {
-  "name": "bestyjs-client",
+  "name": "frontend",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "start": "vite",
     "build": "cross-env NODE_ENV=production tsc && vite build",
-    "pages:deploy": "yarn set version 3.1.0 && yarn && yarn build",
     "fmt": "prettier --write src",
     "fmt:check": "prettier --check src",
     "lint": "yarn pretty && eslint --max-warnings 0 --ext ts,tsx,json src",

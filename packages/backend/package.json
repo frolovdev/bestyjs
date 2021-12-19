@@ -1,5 +1,5 @@
 {
-  "name": "besty-backend",
+  "name": "backend",
   "version": "1.0.0",
   "description": "Example project using Miniflare, TypeScript, esbuild and Jest",
   "type": "module",

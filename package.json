@@ -7,7 +7,8 @@
   ],
   "scripts": {
     "fmt": "prettier --write packages",
-    "fmt:check": "prettier --check packages"
+    "fmt:check": "prettier --check packages",
+    "frontend:deploy": "yarn set version 3.1.1 && yarn workspace frontend build"
   },
   "devDependencies": {
     "prettier": "^2.5.1"

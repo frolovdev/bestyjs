@@ -4292,6 +4292,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"backend@workspace:packages/backend":
+  version: 0.0.0-use.local
+  resolution: "backend@workspace:packages/backend"
+  dependencies:
+    "@cloudflare/workers-types": ^3.1.1
+    "@types/jest": ^27.0.2
+    esbuild: ^0.13.13
+    jest: ^27.3.1
+    jest-environment-miniflare: ^2.0.0-rc.1
+    miniflare: ^2.0.0-rc.1
+    ts-jest: ^27.0.7
+    typescript: ^4.4.4
+  languageName: unknown
+  linkType: soft
+
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -4327,57 +4342,6 @@ __metadata:
   checksum: 61f9934c7378a51dce61b915586191078ef7f1c3eca707fdd58b96ff2ff56d9e0af2bdab66b1462301a73c73374239e6542d9821c0af787f3209a23365d07e7f
   languageName: node
   linkType: hard
-
-"besty-backend@workspace:packages/backend":
-  version: 0.0.0-use.local
-  resolution: "besty-backend@workspace:packages/backend"
-  dependencies:
-    "@cloudflare/workers-types": ^3.1.1
-    "@types/jest": ^27.0.2
-    esbuild: ^0.13.13
-    jest: ^27.3.1
-    jest-environment-miniflare: ^2.0.0-rc.1
-    miniflare: ^2.0.0-rc.1
-    ts-jest: ^27.0.7
-    typescript: ^4.4.4
-  languageName: unknown
-  linkType: soft
-
-"bestyjs-client@workspace:packages/frontend":
-  version: 0.0.0-use.local
-  resolution: "bestyjs-client@workspace:packages/frontend"
-  dependencies:
-    "@borodutch-labs/localize-react": ^1.7.4
-    "@preact/preset-vite": ^2.1.5
-    "@types/node": ^16.11.12
-    "@types/react": ^17.0.37
-    "@typescript-eslint/eslint-plugin": ^5.6.0
-    "@typescript-eslint/parser": ^5.6.0
-    "@vitejs/plugin-react": ^1.1.1
-    autoprefixer: ^9
-    cross-env: ^7.0.3
-    eslint: ^8.4.1
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-import: ^2.25.3
-    eslint-plugin-no-relative-import-paths: ^1.0.8
-    eslint-plugin-prettier: ^4.0.0
-    eslint-plugin-react: ^7.27.1
-    eslint-plugin-react-hooks: ^4.3.0
-    eslint-plugin-sort-imports-es6-autofix: ^0.6.0
-    eslint-plugin-valtio: ^0.4.1
-    postcss: ^7
-    preact: ^10.6.2
-    react-scripts: ^4.0.3
-    rollup-plugin-visualizer: ^5.5.2
-    tailwindcss: "npm:@tailwindcss/postcss7-compat@^2"
-    tailwindcss-classnames: ^2.2.6
-    typescript: ^4.5.2
-    unfetch: ^4.2.0
-    valtio: ^1.2.7
-    vite: ^2.7.1
-    vite-tsconfig-paths: ^3.3.17
-  languageName: unknown
-  linkType: soft
 
 "bestyjs@workspace:.":
   version: 0.0.0-use.local
@@ -8027,6 +7991,42 @@ __metadata:
   checksum: 6080eba0793dce32f475141fb3d54cc15f84ee52e420ee22ac3ab0ad639dc95a1875bc6eb9c0e1140e94972a36a89dc5542491b85f1ab8df0c126241e0f1a61b
   languageName: node
   linkType: hard
+
+"frontend@workspace:packages/frontend":
+  version: 0.0.0-use.local
+  resolution: "frontend@workspace:packages/frontend"
+  dependencies:
+    "@borodutch-labs/localize-react": ^1.7.4
+    "@preact/preset-vite": ^2.1.5
+    "@types/node": ^16.11.12
+    "@types/react": ^17.0.37
+    "@typescript-eslint/eslint-plugin": ^5.6.0
+    "@typescript-eslint/parser": ^5.6.0
+    "@vitejs/plugin-react": ^1.1.1
+    autoprefixer: ^9
+    cross-env: ^7.0.3
+    eslint: ^8.4.1
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-import: ^2.25.3
+    eslint-plugin-no-relative-import-paths: ^1.0.8
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.27.1
+    eslint-plugin-react-hooks: ^4.3.0
+    eslint-plugin-sort-imports-es6-autofix: ^0.6.0
+    eslint-plugin-valtio: ^0.4.1
+    postcss: ^7
+    preact: ^10.6.2
+    react-scripts: ^4.0.3
+    rollup-plugin-visualizer: ^5.5.2
+    tailwindcss: "npm:@tailwindcss/postcss7-compat@^2"
+    tailwindcss-classnames: ^2.2.6
+    typescript: ^4.5.2
+    unfetch: ^4.2.0
+    valtio: ^1.2.7
+    vite: ^2.7.1
+    vite-tsconfig-paths: ^3.3.17
+  languageName: unknown
+  linkType: soft
 
 "fs-extra@npm:^10.0.0":
   version: 10.0.0

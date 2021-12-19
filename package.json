@@ -1,0 +1,15 @@
+{
+  "name": "bestyjs",
+  "packageManager": "yarn@3.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "fmt": "prettier --write packages",
+    "fmt:check": "prettier --check packages"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}

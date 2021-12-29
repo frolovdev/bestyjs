@@ -18,15 +18,11 @@ export const CallbackPage: FC = () => {
           toast.error('Something went wrong');
         }
       } catch (err) {
-        console.error(err);
+        toast.error('Something went wrong');
         setLocation('/');
       }
     };
-    fetch()
-      .then(() => {
-        setLocation('/repo-list');
-      })
-      .catch(() => {});
+    fetch();
   }, []);
-  return <div>Redirecting to /repo-lists...</div>;
+  return <div>Redirecting back...</div>;
 };

@@ -3,17 +3,28 @@ import { FC } from 'preact/compat';
 import { Redirect, Route, RouteProps } from 'wouter-preact';
 
 interface CommonProps extends RouteProps {
-  allowVisit: boolean;
+  loading: 'init' | 'progress' | 'fulfilled' | 'error';
+  isAuthenticated: boolean;
   redirectTo: string;
 }
-type Props = CommonProps & { component: ComponentType | FC };
+type Props = CommonProps & { component: ComponentType };
 
-export const PrivateRoute: FC<Props> = ({
-  allowVisit,
+const PrivateRoute: FC<Props> = ({
+  loading,
+  isAuthenticated,
   redirectTo,
   component: Component,
   ...rest
 }) => {
-  const RedirectComponent = () => <Redirect to={redirectTo} />;
-  return <Route component={allowVisit ? Component : RedirectComponent} />;
+  if (loading !== 'fulfilled') {
+    return null;
+  }
+
+  if (loading === 'fulfilled' && !isAuthenticated) {
+    <Redirect to={redirectTo} />;
+  }
+
+  return <Route path={rest.path} component={Component} />;
 };
+
+export default PrivateRoute;

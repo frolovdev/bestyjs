@@ -1,7 +1,6 @@
-import fetch from 'unfetch';
-
 export default async function getUserCount() {
-  const data = await (await fetch('https://stats.borodutch.com/count')).json();
+  const res = await fetch('https://stats.borodutch.com/count');
+  const data = await res.json();
   return data.count;
 }
 export const fetchAccessToken = async (githubAccessCode: string) => {

@@ -1,45 +1,35 @@
-import { CallbackPage } from './components/CallbackPage';
-import { PrivateRoute } from './components/PrivateRoute';
-import { RepoList } from './components/RepoList';
 import { Route, Switch } from 'wouter-preact';
 import { ToastBar, Toaster, toast } from 'react-hot-toast';
 import { meQuery } from './api';
 import { useEffect, useState } from 'preact/compat';
-import LanguageButtons from 'components/LanguageButtons';
-import LocalizationProvider from 'localization/LocalizationProvider';
-import Login from './components/Login';
-import MainBlock from 'components/MainBlock';
-import Root from 'components/Root';
+import { CallbackPage } from './components/CallbackPage';
+import { Login } from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import { Table } from 'components/Table';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<'init' | 'progress' | 'fulfilled' | 'error'>('init');
   const [status, setStatus] = useState<number>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetch = async () => {
-      try {
-        const { status } = await meQuery();
-        setStatus(status);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
+      const { status } = await meQuery();
+      setStatus(status);
     };
-    void fetch();
+    fetch()
+      .catch((err) => console.error(err))
+      .finally(() => {
+        setLoading('fulfilled');
+      });
   }, []);
   useEffect(() => {
-    if (!isLoading) {
+    if (loading === 'fulfilled') {
       setIsAuthenticated(status === 200);
     }
-  }, [isLoading, status]);
-
-  if (isLoading) {
-    return null;
-  }
+  }, [loading, status]);
 
   return (
-    <Root>
+    <>
       <Toaster position="top-right">
         {(t) => (
           <ToastBar toast={t}>
@@ -52,28 +42,27 @@ const App = () => {
           </ToastBar>
         )}
       </Toaster>
-      <LocalizationProvider>
-        <MainBlock />
-        <LanguageButtons />
-      </LocalizationProvider>
       <Switch>
         <PrivateRoute
-          redirectTo="/repo-list"
-          allowVisit={!isAuthenticated}
-          path="/"
+          redirectTo={'/repo-list'}
+          loading={loading}
+          isAuthenticated={isAuthenticated}
+          path={'/'}
           component={Login}
         />
-        <Route path="/callback" component={CallbackPage}>
+        <Route path={'/callback'} component={CallbackPage}>
           Callback
         </Route>
         <PrivateRoute
-          path="repo-list"
-          allowVisit={isAuthenticated}
-          redirectTo="/"
-          component={RepoList}
+          loading={loading}
+          isAuthenticated={isAuthenticated}
+          path={'/repo-list'}
+          redirectTo={'/'}
+          component={Table}
         />
+        <Route>404, Not Found!</Route>
       </Switch>
-    </Root>
+    </>
   );
 };
 

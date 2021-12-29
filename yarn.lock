@@ -8024,7 +8024,6 @@ __metadata:
     tailwindcss: "npm:@tailwindcss/postcss7-compat@^2"
     tailwindcss-classnames: ^2.2.6
     typescript: ^4.5.2
-    unfetch: ^4.2.0
     valtio: ^1.2.7
     vite: ^2.7.1
     vite-tsconfig-paths: ^3.3.17
@@ -16551,13 +16550,6 @@ __metadata:
   version: 4.12.1
   resolution: "undici@npm:4.12.1"
   checksum: 969ea481ec57ac19a6a642497a84fe492baaf18dcfd885ea41f09e438ae71445c79ffd7756a7927cbe819eb7b7073bf1e3d53acf497e98f685621c4e92997fbd
-  languageName: node
-  linkType: hard
-
-"unfetch@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "unfetch@npm:4.2.0"
-  checksum: 6a4b2557e1d921eaa80c4425ce27a404945ec26491ed06e62598f333996a91a44c7908cb26dc7c2746d735762b13276cf4aa41829b4c8f438dde63add3045d7a
   languageName: node
   linkType: hard
 

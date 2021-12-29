@@ -8,8 +8,6 @@ const scopes = 'read:org,read:user';
 const handleAuth = () => {
   window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scopes}`;
 };
-const Login: FC = () => {
+export const Login: FC = () => {
   return <Button onClick={handleAuth} title="Login" />;
 };
-
-export default Login;

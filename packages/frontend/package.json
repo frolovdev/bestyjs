@@ -29,8 +29,10 @@
     "@borodutch-labs/localize-react": "^1.7.4",
     "@vitejs/plugin-react": "^1.1.1",
     "preact": "^10.6.2",
+    "react-hot-toast": "^2.1.1",
     "unfetch": "^4.2.0",
-    "valtio": "^1.2.7"
+    "valtio": "^1.2.7",
+    "wouter-preact": "^2.8.0-alpha.2"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.1.5",

@@ -26,7 +26,6 @@
     "plugin:valtio/recommended"
   ],
   "rules": {
-    "no-relative-import-paths/no-relative-import-paths": "error",
     "@typescript-eslint/no-floating-promises": "error",
     "require-await": "error",
     "react-hooks/exhaustive-deps": "error",
@@ -49,7 +48,6 @@
         "ignoreMemberSort": false,
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
       }
-    ],
-    "import/prefer-default-export": "error"
+    ]
   }
 }

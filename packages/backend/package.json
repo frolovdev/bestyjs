@@ -6,7 +6,7 @@
   "module": "./dist/index.mjs",
   "scripts": {
     "build": "node build.js",
-    "dev": "miniflare --live-reload --debug",
+    "dev": "miniflare --live-reload --debug --env .env",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "types:check": "tsc && tsc -p test/tsconfig.json"
   },
@@ -22,5 +22,8 @@
     "miniflare": "^2.0.0-rc.1",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "url-pattern": "^1.0.3"
   }
 }

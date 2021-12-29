@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getUserCount from 'helpers/api';
+import getUserCount from 'api';
 
 export default function useUserCount() {
   const [userCount, setUserCount] = useState<undefined | number>(undefined);

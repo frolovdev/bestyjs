@@ -1,5 +1,5 @@
-import { parseCookie } from '@/cookie';
-import { HandlerContext, Router } from '@/router';
+import { parseCookie } from './cookie';
+import { HandlerContext, Router } from './router';
 
 const githubAccessTokenUri = 'https://github.com/login/oauth/access_token';
 const githubApi = 'https://api.github.com';

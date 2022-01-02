@@ -8,7 +8,7 @@
     "build": "node build.js",
     "dev": "miniflare --live-reload --debug --env .env",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "types:check": "tsc && tsc -p test/tsconfig.json"
+    "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

@@ -10,10 +10,11 @@ interface GithubAccessTokenResponse {
   scopes: string;
   token_type: string;
 }
-const notFound = async ({}: HandlerContext): Promise<Response> => {
+const notFound = async ({ request }: HandlerContext): Promise<Response> => {
   return new Response('bad request', {
     status: 404,
     headers: {
+      'Access-Control-Allow-Origin': request?.headers.get('origin') || '',
       'Content-Type': 'application/json; charset=UTF-8',
     },
   });
@@ -30,11 +31,17 @@ const isAuthenticated = async ({ request }: HandlerContext): Promise<Response> =
 
     if (response.status === 200) {
       return new Response('status: OK', {
+        headers: {
+          'Access-Control-Allow-Origin': request?.headers.get('origin') || '',
+        },
         status: 200,
       });
     }
   }
   return new Response('Unauthorized', {
+    headers: {
+      'Access-Control-Allow-Origin': request?.headers.get('origin') || '',
+    },
     status: 401,
   });
 };
@@ -53,12 +60,16 @@ const authenticate = async ({ ctx, request }: HandlerContext): Promise<Response>
   const { access_token } = await response.json<GithubAccessTokenResponse>();
   if (!access_token) {
     return new Response('ERROR', {
+      headers: {
+        'Access-Control-Allow-Origin': request?.headers.get('origin') || '',
+      },
       status: 401,
     });
   }
   return new Response('status: OK', {
     status: 200,
     headers: {
+      'Access-Control-Allow-Origin': request?.headers.get('origin') || '',
       'Set-Cookie': `qid=${access_token};SameSite=Lax; HttpOnly; Path=/`,
     },
   });

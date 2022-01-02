@@ -4300,12 +4300,12 @@ __metadata:
     "@cloudflare/workers-types": ^3.1.1
     "@types/jest": ^27.0.2
     esbuild: ^0.13.13
+    itty-router: ^2.4.8
     jest: ^27.3.1
     jest-environment-miniflare: ^2.0.0-rc.1
     miniflare: ^2.0.0-rc.1
     ts-jest: ^27.0.7
     typescript: ^4.4.4
-    url-pattern: ^1.0.3
   languageName: unknown
   linkType: soft
 
@@ -9692,6 +9692,13 @@ __metadata:
     html-escaper: ^2.0.0
     istanbul-lib-report: ^3.0.0
   checksum: 052d002f38d74c869bff009e7a59565f45e67f0ea15cb82547b8479fb494b1c85dc84edb9e5bf7925a8f889ef4980e8af2153a0fb016dedf269b050204fe46ed
+  languageName: node
+  linkType: hard
+
+"itty-router@npm:^2.4.8":
+  version: 2.4.8
+  resolution: "itty-router@npm:2.4.8"
+  checksum: 51dadccf7c3ad845963a1d277cc439b5b41d7b6f6d9461e7646a8f7b3a1242a6e61f51bdbbfc234ef2f51bcb459df3ec41f3a480f2d59e91cfa65ab19318ab5a
   languageName: node
   linkType: hard
 
@@ -16722,13 +16729,6 @@ __metadata:
     querystringify: ^2.1.1
     requires-port: ^1.0.0
   checksum: 4e627dca06e649e366a6e0a2becd2df36fd5d37baa9b3362bb5b29bb2e41bba9c62ed37d24d5a4cb5a642cfaf5232163ab6794c9779f85e4ed804366bb8c377e
-  languageName: node
-  linkType: hard
-
-"url-pattern@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "url-pattern@npm:1.0.3"
-  checksum: 7f4c57707240f0eb18f4654c4206b8669de037594beb86abd090d4e3dacd4751fcb3a04e271a74cbbe2124bc573e857d8c0588c4accb17da03a62082a58559fc
   languageName: node
   linkType: hard
 

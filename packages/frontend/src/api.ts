@@ -17,5 +17,7 @@ export const meQuery = async () => {
 };
 
 function getDomain(apiRoute: string) {
-  return process.env.NODE_ENV === 'production' ? `https://api.bestyjs.com/api${apiRoute}` : '/api';
+  return process.env.NODE_ENV === 'production'
+    ? `https://api.bestyjs.com/api${apiRoute}`
+    : `/api${apiRoute}`;
 }

@@ -1,10 +1,6 @@
-name = "my-app"
+name = "bestyjs-worker"
 type = "javascript"
-
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
+workers_dev = false
 
 compatibility_date = "2021-12-10"
 compatibility_flags = []
@@ -17,5 +13,7 @@ format = "modules"
 dir = "dist"
 main = "./index.mjs"
 
-[miniflare]
-durable_objects_persist = true
+[env.production]
+zone_id = "71470a7b9ca059ee006ceb87cda2ee5b"
+account_id = "9b9cf6c060da03186bb4b618460149e0"
+route = "api.bestyjs.com/*"

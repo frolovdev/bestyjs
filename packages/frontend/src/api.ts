@@ -1,10 +1,5 @@
-export default async function getUserCount() {
-  const res = await fetch('https://stats.borodutch.com/count');
-  const data = await res.json();
-  return data.count;
-}
 export const fetchAccessToken = async (githubAccessCode: string) => {
-  return await fetch('/api/oauth/token', {
+  return await fetch(getDomain('/oauth/token'), {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -12,10 +7,15 @@ export const fetchAccessToken = async (githubAccessCode: string) => {
     body: JSON.stringify({ code: githubAccessCode }),
   });
 };
+
 export const meQuery = async () => {
-  return await fetch('/api/me', {
+  return await fetch(getDomain('/me'), {
     headers: {
       'Content-Type': 'application/json',
     },
   });
 };
+
+function getDomain(apiRoute: string) {
+  return process.env.NODE_ENV === 'production' ? `https://api.bestyjs.com${apiRoute}` : '/api';
+}

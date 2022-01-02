@@ -8,6 +8,14 @@ export const CallbackPage: FC = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const code = queryParams.get('code') || '';
+    const stateQueryParams = queryParams.get('state');
+    const stateStorage = sessionStorage.getItem('state');
+    sessionStorage.removeItem('state');
+    if (!stateQueryParams || !stateStorage || stateStorage !== stateQueryParams) {
+      toast.error('No state');
+      return;
+    }
+
     const fetch = async () => {
       try {
         const { status } = await fetchAccessToken(code);

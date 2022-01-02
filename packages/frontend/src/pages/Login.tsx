@@ -5,10 +5,35 @@ import { Table } from 'components/Table';
 const { clientId, redirect_uri } = githubConfig;
 const scopes = 'read:org,read:user';
 
-const handleAuth = () => {
-  window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scopes}`;
+const generateNonce = (length: number = 32) => {
+  const bytes = new Uint8Array(length);
+  const result = [];
+  const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~';
+
+  const { crypto } = window;
+
+  if (!crypto) {
+    throw new Error("we don't support browsers without crypto module, please use modern browsers");
+  }
+
+  const random = crypto.getRandomValues(bytes);
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < random.length; i++) {
+    result.push(charset[random[i] % charset.length]);
+  }
+
+  return result.join('');
 };
+
 export const Login: FC = () => {
+  const handleAuth = () => {
+    const state = generateNonce();
+
+    sessionStorage.setItem('state', state);
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}`;
+  };
+
   return (
     <div className="relative min-h-full bg-gray-50 pt-16 overflow-hidden sm:pt-24 lg:pt-32">
       <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">

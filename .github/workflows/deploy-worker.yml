@@ -17,7 +17,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install modules
-        run: yarn
+        run: yarn --immutable
 
       - name: Deploy
         uses: cloudflare/wrangler-action@1.3.0

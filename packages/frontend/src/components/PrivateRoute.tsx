@@ -9,7 +9,7 @@ interface CommonProps extends RouteProps {
 }
 type Props = CommonProps & { component: ComponentType };
 
-const PrivateRoute: FC<Props> = ({
+export const PrivateRoute: FC<Props> = ({
   loading,
   isAuthenticated,
   redirectTo,
@@ -26,5 +26,3 @@ const PrivateRoute: FC<Props> = ({
 
   return <Route path={rest.path} component={Component} />;
 };
-
-export default PrivateRoute;

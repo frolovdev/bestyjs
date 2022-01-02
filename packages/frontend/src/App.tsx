@@ -3,8 +3,8 @@ import { ToastBar, Toaster, toast } from 'react-hot-toast';
 import { meQuery } from './api';
 import { useEffect, useState } from 'preact/compat';
 import { CallbackPage } from './components/CallbackPage';
-import { Login } from './components/Login';
-import PrivateRoute from './components/PrivateRoute';
+import { Login } from './pages/Login';
+import { PrivateRoute } from './components/PrivateRoute';
 import { Table } from 'components/Table';
 
 const App = () => {
@@ -44,20 +44,20 @@ const App = () => {
       </Toaster>
       <Switch>
         <PrivateRoute
-          redirectTo={'/repo-list'}
+          redirectTo="/repo-list"
           loading={loading}
           isAuthenticated={isAuthenticated}
-          path={'/'}
+          path="/"
           component={Login}
         />
-        <Route path={'/callback'} component={CallbackPage}>
+        <Route path="/callback" component={CallbackPage}>
           Callback
         </Route>
         <PrivateRoute
           loading={loading}
           isAuthenticated={isAuthenticated}
-          path={'/repo-list'}
-          redirectTo={'/'}
+          path="/repo-list"
+          redirectTo="/"
           component={Table}
         />
         <Route>404, Not Found!</Route>

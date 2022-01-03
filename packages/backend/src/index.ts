@@ -7,7 +7,7 @@ const githubApi = 'https://api.github.com';
 const cookieName = 'qid';
 
 interface Ctx {
-  env: { CLIENT_ID: string; CLIENT_SECRET: string };
+  env: Bindings;
 }
 
 type Handler = (request: Request, ctx: Ctx) => Promise<Response>;
@@ -66,7 +66,9 @@ const authenticate: Handler = async (request, ctx) => {
   return new Response('status: OK', {
     status: 200,
     headers: {
-      'Set-Cookie': `qid=${access_token};SameSite=Lax; HttpOnly; Path=/`,
+      'Set-Cookie': `qid=${access_token};SameSite=Lax; HttpOnly; Path=/${
+        ctx.env.ENVIRONMENT === 'production' ? '; Secure; Domain=bestyjs.com' : ''
+      }`,
     },
   });
 };

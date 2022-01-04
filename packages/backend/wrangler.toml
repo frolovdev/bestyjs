@@ -15,9 +15,9 @@ format = "modules"
 dir = "dist"
 main = "./index.mjs"
 
-[env.developement]
-vars = { ENVIRONMENT = "developement" }
+[env.development]
+vars = { ENVIRONMENT = "development", DOMAIN = "bestyjs.com" }
 
 [env.production]
-vars = { ENVIRONMENT = "production" }
+vars = { ENVIRONMENT = "production", DOMAIN = "bestyjs.com" }
 route = "api.bestyjs.com/*"

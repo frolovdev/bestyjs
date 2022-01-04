@@ -3,6 +3,7 @@ export const fetchAccessToken = async (githubAccessCode: string) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     method: 'POST',
     body: JSON.stringify({ code: githubAccessCode }),
   });
@@ -13,6 +14,7 @@ export const meQuery = async () => {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
   });
 };
 

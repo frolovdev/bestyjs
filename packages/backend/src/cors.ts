@@ -1,9 +1,13 @@
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
-  'Access-Control-Max-Age': '86400',
-};
-export function handleOptions(request: Request) {
+import { Ctx } from 'src';
+
+export function handleOptions(request: Request, ctx: Ctx) {
+  const corsHeaders = {
+    'Access-Control-Allow-Origin':
+      ctx.env.ENVIRONMENT === 'production' ? `https://${ctx.env.DOMAIN}` : '*',
+    'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+    'Access-Control-Max-Age': '86400',
+    'Access-Control-Allow-Credentials': 'true',
+  };
   // Make sure the necessary headers are present
   // for this to be a valid pre-flight request
   let headers = request.headers;

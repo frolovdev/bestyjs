@@ -1,13 +1,53 @@
-const repos = [
+import { reposQuery } from 'api';
+import { FC } from 'preact/compat';
+import { useEffect, useState } from 'preact/hooks';
+
+interface IRepoResponse {
+  owner: string;
+  name: string;
+  fullName: string;
+  language: string;
+  contentUrl: string;
+  eslint: boolean;
+  prettier: boolean;
+  jest: boolean;
+}
+const placeHolderRepos: IRepoResponse[] = [
   {
-    repoName: 'anyspec',
-    eslint: '✅',
-    prettier: '❌',
-    jest: '✅',
+    name: 'anyspec',
+    owner: 'random',
+    fullName: 'random/anyspec',
+    contentUrl: 'random',
+    language: 'Typescript',
+    eslint: true,
+    prettier: false,
+    jest: false,
   },
 ];
 
-export const Table = () => {
+interface Props {
+  isPlaceholder?: boolean;
+}
+
+export const Table: FC<Props> = ({ isPlaceholder = false }) => {
+  const [repos, setRepos] = useState<IRepoResponse[]>();
+  useEffect(() => {
+    if (isPlaceholder) {
+      setRepos(placeHolderRepos);
+    } else {
+      const fetch = async () => {
+        try {
+          const response = await reposQuery();
+          const repos = await response.json();
+          setRepos(repos);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      void fetch();
+    }
+  }, []);
+
   return (
     <div className="min-h-full flex items-center justify-center">
       <div className="flex flex-col">
@@ -44,22 +84,23 @@ export const Table = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {repos.map((repo) => (
-                    <tr key={repo.repoName}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {repo.repoName}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {repo.eslint}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {repo.prettier}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {repo.jest}
-                      </td>
-                    </tr>
-                  ))}
+                  {repos &&
+                    repos.map((repo) => (
+                      <tr key={repo.fullName}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {repo.name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {repo.eslint ? '✅' : '❌'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {repo.prettier ? '✅' : '❌'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {repo.jest ? '✅' : '❌'}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>

@@ -18,6 +18,15 @@ export const meQuery = async () => {
   });
 };
 
+export const reposQuery = async () => {
+  return await fetch(getDomain('/repos'), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+};
+
 function getDomain(apiRoute: string) {
   return process.env.NODE_ENV === 'production'
     ? `https://api.bestyjs.com/api${apiRoute}`

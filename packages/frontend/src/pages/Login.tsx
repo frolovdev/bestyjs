@@ -57,7 +57,7 @@ export const Login: FC = () => {
         Get your dashboard
       </div>
       <div className="mt-4">
-        <Table />
+        <Table isPlaceholder />
       </div>
       <div className="mt-20">
         <button

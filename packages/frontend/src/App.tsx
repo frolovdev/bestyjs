@@ -5,7 +5,7 @@ import { useEffect, useState } from 'preact/compat';
 import { CallbackPage } from './components/CallbackPage';
 import { Login } from './pages/Login';
 import { PrivateRoute } from './components/PrivateRoute';
-import { Table } from 'components/Table';
+import { RepositoryList } from 'pages/RepositoryList';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -58,7 +58,7 @@ const App = () => {
           isAuthenticated={isAuthenticated}
           path="/repo-list"
           redirectTo="/"
-          component={Table}
+          component={RepositoryList}
         />
         <Route>404, Not Found!</Route>
       </Switch>

@@ -1,3 +1,4 @@
+import { callGithub } from '../sdk/github.sdk';
 import { githubApi } from '../config';
 import { IGithubAPIRepo, IGithubFileContent } from '../types';
 
@@ -20,7 +21,7 @@ export const getPackageConfig = async ({
   contentUri: string;
   accessToken: string;
 }): Promise<Record<string, any> | null> => {
-  const contentResponse = await fetch(`${contentUri}/package.json`, {
+  const contentResponse = await callGithub(`${contentUri}/package.json`, {
     headers: {
       Authorization: `token ${accessToken}`,
       Accept: 'application/vnd.github.v3+json',
@@ -47,7 +48,7 @@ export const getGithubDirectoryContent = async ({
   contentUri: string;
   accessToken: string;
 }): Promise<IGithubFileContent[]> => {
-  const directoryContentResponse = await fetch(`${contentUri}/`, {
+  const directoryContentResponse = await callGithub(`${contentUri}/`, {
     headers: {
       Authorization: `token ${accessToken}`,
       Accept: 'application/vnd.github.v3+json',

@@ -1,4 +1,4 @@
-import { Ctx } from 'src';
+import { Ctx } from './types';
 
 export function handleOptions(request: Request, ctx: Ctx) {
   const corsHeaders = {

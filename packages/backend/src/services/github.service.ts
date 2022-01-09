@@ -3,7 +3,7 @@ import { githubApi } from '../config';
 import { IGithubAPIRepo, IGithubFileContent } from '../types';
 
 export const getGithubRepos = async (accessToken: string): Promise<IGithubAPIRepo[]> => {
-  const response = await fetch(
+  const response = await callGithub(
     `${githubApi}/user/repos?accept=application/vnd.github.v3+json&sort=updated`,
     {
       headers: {

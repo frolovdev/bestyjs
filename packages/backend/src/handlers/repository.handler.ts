@@ -44,7 +44,7 @@ export const getRepos: Handler = async (request) => {
       }
     }
   } catch (err) {
-    console.error(err);
+    console.log(err);
     return new Response('Error', {
       status: 500,
     });

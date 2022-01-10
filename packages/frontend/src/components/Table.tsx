@@ -8,6 +8,7 @@ interface IRepoResponse {
   fullName: string;
   language: string;
   contentUrl: string;
+  typescript: boolean;
   eslint: boolean;
   prettier: boolean;
   jest: boolean;
@@ -19,6 +20,7 @@ const placeHolderRepos: IRepoResponse[] = [
     fullName: 'random/anyspec',
     contentUrl: 'random',
     language: 'Typescript',
+    typescript: true,
     eslint: true,
     prettier: false,
     jest: false,
@@ -67,6 +69,12 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      Typescript
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Eslint
                     </th>
                     <th
@@ -89,6 +97,9 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                       <tr key={repo.fullName}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {repo.name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {repo.typescript ? '✅' : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {repo.eslint ? '✅' : '❌'}

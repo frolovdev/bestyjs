@@ -20,6 +20,7 @@ export interface IRepoResponse {
   prettier: boolean;
   eslint: boolean;
   jest: boolean;
+  typescript: boolean;
 }
 
 export interface GithubAccessTokenResponse {

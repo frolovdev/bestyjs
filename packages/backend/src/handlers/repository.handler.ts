@@ -6,8 +6,9 @@ import {
 import { extractCookie } from '../cookie';
 import { isPrettier } from '../services/prettier.service';
 import { Handler, IRepoResponse } from '../types';
-import { isEslint } from 'src/services/eslint.service';
-import { isJest } from 'src/services/jest.service';
+import { isEslint } from '../services/eslint.service';
+import { isJest } from '../services/jest.service';
+import { isTypescript } from '../services/typescript.service';
 
 export const getRepos: Handler = async (request) => {
   const accessToken = extractCookie(request.headers.get('Cookie') || '');
@@ -40,6 +41,7 @@ export const getRepos: Handler = async (request) => {
           prettier: isPrettier({ directoryContent, packageConfig }),
           eslint: isEslint({ directoryContent, packageConfig }),
           jest: isJest({ directoryContent, packageConfig }),
+          typescript: isTypescript(packageConfig),
         };
         responseBody = [...responseBody, repository];
       }

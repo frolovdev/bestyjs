@@ -6,6 +6,7 @@ const eslint = [
   '.eslintrc.yaml',
   '.eslintrc.yml',
   '.eslintrc.json',
+  '.eslintrc',
 ];
 
 export const isEslint = ({

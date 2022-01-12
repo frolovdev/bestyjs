@@ -15,7 +15,7 @@ const cspell = [
   'package.json ',
 ];
 
-const isCspell = ({
+export const isCspell = ({
   packageConfig,
   directoryContent,
 }: {

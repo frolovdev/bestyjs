@@ -22,8 +22,8 @@ export const isPrettier = ({
   if (packageConfig.prettier) {
     return true;
   }
-  for (const entry of directoryContent) {
-    if (prettier.includes(entry.name)) {
+  for (const { name } of directoryContent) {
+    if (prettier.includes(name)) {
       return true;
     }
   }

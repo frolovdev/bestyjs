@@ -21,6 +21,7 @@ export interface IRepoResponse {
   eslint: boolean;
   jest: boolean;
   typescript: boolean;
+  cspell: boolean;
 }
 
 export interface GithubAccessTokenResponse {

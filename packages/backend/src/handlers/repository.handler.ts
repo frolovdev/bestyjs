@@ -9,6 +9,7 @@ import { Handler, IRepoResponse } from '../types';
 import { isEslint } from '../services/eslint.service';
 import { isJest } from '../services/jest.service';
 import { isTypescript } from '../services/typescript.service';
+import { isCspell } from 'src/services/cspell.service';
 
 export const getRepos: Handler = async (request) => {
   const accessToken = extractCookie(request.headers.get('Cookie') || '');
@@ -42,6 +43,7 @@ export const getRepos: Handler = async (request) => {
           eslint: isEslint({ directoryContent, packageConfig }),
           jest: isJest({ directoryContent, packageConfig }),
           typescript: isTypescript(packageConfig),
+          cspell: isCspell({ packageConfig, directoryContent }),
         };
         responseBody = [...responseBody, repository];
       }

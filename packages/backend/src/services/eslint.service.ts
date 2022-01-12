@@ -19,8 +19,8 @@ export const isEslint = ({
   if (packageConfig.eslintConfig) {
     return true;
   }
-  for (const entry of directoryContent) {
-    if (eslint.includes(entry.name)) {
+  for (const { name } of directoryContent) {
+    if (eslint.includes(name)) {
       return true;
     }
   }

@@ -12,6 +12,7 @@ interface IRepoResponse {
   eslint: boolean;
   prettier: boolean;
   jest: boolean;
+  cspell: boolean;
 }
 const placeHolderRepos: IRepoResponse[] = [
   {
@@ -24,6 +25,7 @@ const placeHolderRepos: IRepoResponse[] = [
     eslint: true,
     prettier: false,
     jest: false,
+    cspell: true,
   },
 ];
 
@@ -89,6 +91,12 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                     >
                       Jest
                     </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Cspell
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -109,6 +117,9 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {repo.jest ? '✅' : '❌'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {repo.cspell ? '✅' : '❌'}
                         </td>
                       </tr>
                     ))}

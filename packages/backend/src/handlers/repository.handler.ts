@@ -10,6 +10,7 @@ import { isEslint } from '../services/eslint.service';
 import { isJest } from '../services/jest.service';
 import { isTypescript } from '../services/typescript.service';
 import { isCspell } from 'src/services/cspell.service';
+import { isEditorConfig } from 'src/services/editorconfig.service';
 
 export const getRepos: Handler = async (request) => {
   const accessToken = extractCookie(request.headers.get('Cookie') || '');
@@ -44,6 +45,7 @@ export const getRepos: Handler = async (request) => {
           jest: isJest({ directoryContent, packageConfig }),
           typescript: isTypescript(packageConfig),
           cspell: isCspell({ packageConfig, directoryContent }),
+          editorConfig: isEditorConfig(directoryContent),
         };
         responseBody = [...responseBody, repository];
       }

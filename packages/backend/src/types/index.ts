@@ -22,6 +22,7 @@ export interface IRepoResponse {
   jest: boolean;
   typescript: boolean;
   cspell: boolean;
+  editorConfig: boolean;
 }
 
 export interface GithubAccessTokenResponse {

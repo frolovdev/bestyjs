@@ -12,8 +12,8 @@ export const isJest = ({
   if (packageConfig.jest) {
     return true;
   }
-  for (const entry of directoryContent) {
-    if (jest.includes(entry.name)) {
+  for (const { name } of directoryContent) {
+    if (jest.includes(name)) {
       return true;
     }
   }

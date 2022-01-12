@@ -42,10 +42,10 @@ export const Login: FC = () => {
             Bestyjs
           </h2>
           <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-            Helicopter view of your javascript GitHub repos.
+            Javascript repository best practices made easy.
           </p>
           <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-            Get a dashboard for analyze best practices of your javascript repos in one click.
+            Up to date best practices dashboard in just one click.
           </p>
         </div>
       </div>

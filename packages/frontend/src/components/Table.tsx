@@ -1,6 +1,7 @@
 import { reposQuery } from 'api';
 import { FC } from 'preact/compat';
 import { useEffect, useState } from 'preact/hooks';
+import { Loader } from './Loader';
 
 interface IRepoResponse {
   owner: string;
@@ -36,6 +37,7 @@ interface Props {
 }
 
 export const Table: FC<Props> = ({ isPlaceholder = false }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [repos, setRepos] = useState<IRepoResponse[]>();
   useEffect(() => {
     if (isPlaceholder) {
@@ -53,6 +55,10 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
       void fetch();
     }
   }, []);
+
+  if (loading || !repos) {
+    return <Loader fullScreen />;
+  }
 
   return (
     <div className="min-h-full flex items-center justify-center">

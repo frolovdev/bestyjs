@@ -1,7 +1,6 @@
 export interface Ctx {
   env: Bindings;
 }
-export type Handler = (request: Request, ctx: Ctx) => Promise<Response>;
 
 export interface IGithubAPIRepo {
   owner: string;

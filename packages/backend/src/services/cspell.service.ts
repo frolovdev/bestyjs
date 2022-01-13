@@ -21,12 +21,21 @@ export const isCspell = ({
   packageConfig: Record<string, any>;
   directoryContent: IGithubFileContent[];
 }) => {
-  if (packageConfig.cspell) {
-    return true;
-  }
-  for (const { name } of directoryContent) {
-    if (cspell.includes(name)) {
+  const scripts = Object.values<string>(packageConfig.scripts);
+  const devDependencies = Object.keys(packageConfig.devDependencies);
+  if (!devDependencies.includes('cspell')) {
+    if (packageConfig.cspell) {
       return true;
+    }
+    for (const script of scripts) {
+      if (script.includes('cspell')) {
+        return true;
+      }
+    }
+    for (const { name } of directoryContent) {
+      if (cspell.includes(name)) {
+        return true;
+      }
     }
   }
   return false;

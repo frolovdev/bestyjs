@@ -17,7 +17,7 @@ interface IRepoResponse {
 }
 const placeHolderRepos: IRepoResponse[] = [
   {
-    name: 'anyspec',
+    name: 'Your repo name',
     owner: 'random',
     fullName: 'random/anyspec',
     contentUrl: 'random',

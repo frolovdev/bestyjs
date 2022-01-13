@@ -5,19 +5,20 @@ import {
 } from '../services/github.service';
 import { extractCookie } from '../cookie';
 import { isPrettier } from '../services/prettier.service';
-import { Handler, IRepoResponse } from '../types';
+import { IRepoResponse } from '../types';
 import { isEslint } from '../services/eslint.service';
 import { isJest } from '../services/jest.service';
 import { isTypescript } from '../services/typescript.service';
-import { isCspell } from 'src/services/cspell.service';
-import { isEditorConfig } from 'src/services/editorconfig.service';
+import { isCspell } from '../services/cspell.service';
+import { isEditorConfig } from '../services/editorconfig.service';
+import { handler } from '../lib/handler';
 
-export const getRepos: Handler = async (request) => {
+export const getRepos = handler(async (request) => {
   const accessToken = extractCookie(request.headers.get('Cookie') || '');
   if (!accessToken) {
-    return new Response('Unauthorized', {
+    return {
       status: 401,
-    });
+    };
   }
   let responseBody: IRepoResponse[] = [];
   try {
@@ -52,15 +53,16 @@ export const getRepos: Handler = async (request) => {
     }
   } catch (err) {
     console.log(err);
-    return new Response('Error', {
+    return {
       status: 500,
-    });
+    };
   }
 
-  return new Response(JSON.stringify(responseBody), {
+  return {
+    body: responseBody,
     status: 200,
     headers: {
       'Content-Type': 'application/json',
     },
-  });
-};
+  };
+});

@@ -1,4 +1,4 @@
-import { IGithubFileContent } from 'src/types';
+import { IGithubFileContent } from '../types';
 
 const editorConfig = '.editorconfig';
 

@@ -116,26 +116,26 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {repos &&
                     repos.map((repo) => (
-                      <tr key={repo.fullName}>
+                      <tr key={repo.fullName} className="divide-x divide-gray-200">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {repo.name}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.typescript ? '✅' : '❌'}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.eslint ? '✅' : '❌'}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.prettier ? '✅' : '❌'}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.jest ? '✅' : '❌'}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.cspell ? '✅' : '❌'}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.cspell ? '✅' : '❌'}
                         </td>
                       </tr>

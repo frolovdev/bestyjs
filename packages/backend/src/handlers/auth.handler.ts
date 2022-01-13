@@ -1,4 +1,4 @@
-import { handler } from 'src/lib/handler';
+import { handler } from '../lib/handler';
 import { cookieName } from '../config';
 import { parseCookie } from '../cookie';
 import { getAccessToken, isValid } from '../services/auth.service';

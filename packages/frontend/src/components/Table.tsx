@@ -37,26 +37,21 @@ interface Props {
 }
 
 export const Table: FC<Props> = ({ isPlaceholder = false }) => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [repos, setRepos] = useState<IRepoResponse[]>();
+  const [repos, setRepos] = useState<IRepoResponse[]>(isPlaceholder ? placeHolderRepos : []);
   useEffect(() => {
-    if (isPlaceholder) {
-      setRepos(placeHolderRepos);
-    } else {
-      const fetch = async () => {
-        try {
-          const response = await reposQuery();
-          const repos = await response.json();
-          setRepos(repos);
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      void fetch();
-    }
+    const fetch = async () => {
+      try {
+        const response = await reposQuery();
+        const repos = await response.json();
+        setRepos(repos);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    void fetch();
   }, []);
 
-  if (loading || !repos) {
+  if (!repos) {
     return <Loader fullScreen />;
   }
 

@@ -2,6 +2,7 @@ import { FC, useEffect } from 'preact/compat';
 import { fetchAccessToken } from '../api';
 import { toast } from 'react-hot-toast';
 import { useLocation } from 'wouter-preact';
+import { Loader } from './Loader';
 
 export const CallbackPage: FC = () => {
   const [_, setLocation] = useLocation();
@@ -32,5 +33,5 @@ export const CallbackPage: FC = () => {
     };
     fetch();
   }, []);
-  return <div>Redirecting back...</div>;
+  return <Loader />;
 };

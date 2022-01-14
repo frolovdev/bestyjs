@@ -6,10 +6,11 @@ import { CallbackPage } from './components/CallbackPage';
 import { Login } from './pages/Login';
 import { PrivateRoute } from './components/PrivateRoute';
 import { RepositoryList } from 'pages/RepositoryList';
+import { LoadingState } from './types';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [loading, setLoading] = useState<'init' | 'progress' | 'fulfilled' | 'error'>('init');
+  const [loading, setLoading] = useState<LoadingState>('init');
   const [status, setStatus] = useState<number>();
   useEffect(() => {
     const fetch = async () => {

@@ -1,6 +1,8 @@
 import { reposQuery } from 'api';
 import { FC } from 'preact/compat';
 import { useEffect, useState } from 'preact/hooks';
+import toast from 'react-hot-toast';
+import { LoadingState } from 'types';
 import { Loader } from './Loader';
 
 interface IRepoResponse {
@@ -37,21 +39,25 @@ interface Props {
 }
 
 export const Table: FC<Props> = ({ isPlaceholder = false }) => {
+  const [loading, setLoading] = useState<LoadingState>(isPlaceholder ? 'init' : 'fulfilled');
   const [repos, setRepos] = useState<IRepoResponse[]>(isPlaceholder ? placeHolderRepos : []);
   useEffect(() => {
     const fetch = async () => {
+      setLoading('progress');
       try {
         const response = await reposQuery();
         const repos = await response.json();
         setRepos(repos);
+        setLoading('fulfilled');
       } catch (err) {
-        console.error(err);
+        setLoading('error');
+        toast.error('Something bad happened :(');
       }
     };
     void fetch();
   }, []);
 
-  if (!repos) {
+  if (loading !== 'fulfilled') {
     return <Loader fullScreen />;
   }
 

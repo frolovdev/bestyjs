@@ -42,6 +42,10 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
   const [loading, setLoading] = useState<LoadingState>(isPlaceholder ? 'init' : 'fulfilled');
   const [repos, setRepos] = useState<IRepoResponse[]>(isPlaceholder ? placeHolderRepos : []);
   useEffect(() => {
+    if (isPlaceholder) {
+      return;
+    }
+
     const fetch = async () => {
       setLoading('progress');
       try {

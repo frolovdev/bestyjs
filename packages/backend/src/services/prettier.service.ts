@@ -1,4 +1,4 @@
-import { IGithubFileContent } from '../types/index';
+import { IGithubFileContent, PackageConfig } from '../types/index';
 
 const prettier = [
   '.prettierrc',
@@ -16,7 +16,7 @@ export const isPrettier = ({
   packageConfig,
   directoryContent,
 }: {
-  packageConfig: Record<string, any>;
+  packageConfig: PackageConfig;
   directoryContent: IGithubFileContent[];
 }): boolean => {
   if (packageConfig.prettier) {

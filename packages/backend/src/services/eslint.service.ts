@@ -1,4 +1,4 @@
-import { IGithubFileContent } from '../types';
+import { IGithubFileContent, PackageConfig } from '../types';
 
 const eslint = [
   '.eslintrc.js',
@@ -13,7 +13,7 @@ export const isEslint = ({
   packageConfig,
   directoryContent,
 }: {
-  packageConfig: Record<string, any>;
+  packageConfig: PackageConfig;
   directoryContent: IGithubFileContent[];
 }): boolean => {
   if (packageConfig.eslintConfig) {

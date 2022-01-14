@@ -1,4 +1,4 @@
-import { IGithubFileContent } from '../types';
+import { IGithubFileContent, PackageConfig } from '../types';
 
 const jest = ['jest.config.js', 'jest.config.ts'];
 
@@ -6,11 +6,11 @@ export const isJest = ({
   packageConfig,
   directoryContent,
 }: {
-  packageConfig: Record<string, any>;
+  packageConfig: PackageConfig;
   directoryContent: IGithubFileContent[];
 }): boolean => {
-  const scripts = Object.values<string>(packageConfig.scripts);
-  const devDependencies = Object.keys(packageConfig.devDependencies);
+  const scripts = Object.values(packageConfig?.scripts || {});
+  const devDependencies = Object.keys(packageConfig?.devDependencies || {});
   if (devDependencies.includes('jest')) {
     if (packageConfig.jest) {
       return true;

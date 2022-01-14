@@ -1,4 +1,4 @@
-import { IGithubFileContent } from '../types';
+import { IGithubFileContent, PackageConfig } from '../types';
 
 const cspell = [
   '.cspell.json',
@@ -18,11 +18,11 @@ export const isCspell = ({
   packageConfig,
   directoryContent,
 }: {
-  packageConfig: Record<string, any>;
+  packageConfig: PackageConfig;
   directoryContent: IGithubFileContent[];
 }) => {
-  const scripts = Object.values<string>(packageConfig.scripts);
-  const devDependencies = Object.keys(packageConfig.devDependencies);
+  const scripts = Object.values<string>(packageConfig?.scripts || {});
+  const devDependencies = Object.keys(packageConfig?.devDependencies || {});
   if (!devDependencies.includes('cspell')) {
     if (packageConfig.cspell) {
       return true;

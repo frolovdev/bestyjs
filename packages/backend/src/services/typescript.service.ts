@@ -1,6 +1,8 @@
-export const isTypescript = (packageConfig: Record<string, any>): boolean => {
-  const devDependencies = packageConfig.devDependencies as { [key: string]: string };
-  const dependencies = packageConfig.dependencencies as { [key: string]: string };
+import { PackageConfig } from 'src/types';
+
+export const isTypescript = (packageConfig: PackageConfig): boolean => {
+  const devDependencies = packageConfig.devDependencies;
+  const dependencies = packageConfig.dependencies;
   for (const dependency of Object.keys({ ...devDependencies, ...dependencies })) {
     if (dependency === 'typescript') {
       return true;

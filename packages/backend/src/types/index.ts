@@ -37,3 +37,13 @@ export interface IGithubFileContent {
   content?: string;
   encoding?: string;
 }
+
+export interface PackageConfig {
+  scripts?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+  dependencies?: Record<string, string>;
+  jest?: Record<string, any>;
+  prettier?: Record<string, any>;
+  eslintConfig?: Record<string, any>;
+  cspell?: Record<string, any>;
+}

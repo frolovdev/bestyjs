@@ -32,6 +32,19 @@ const placeHolderRepos: IRepoResponse[] = [
     cspell: true,
     editorConfig: true,
   },
+  {
+    name: 'Your another repo',
+    owner: 'random',
+    fullName: 'random/anyspec',
+    contentUrl: 'random',
+    language: 'Typescript',
+    typescript: false,
+    eslint: true,
+    prettier: true,
+    jest: true,
+    cspell: false,
+    editorConfig: true,
+  },
 ];
 
 interface Props {

@@ -53,7 +53,7 @@ export default class ErrorBoundary extends Component<Props> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    if (import.meta.env.MODE === 'production') this.rollbar.error(error, errorInfo);
+    this.rollbar.error(error, errorInfo);
   }
 
   render() {

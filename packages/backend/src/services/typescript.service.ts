@@ -1,8 +1,13 @@
 import { PackageConfig } from '../types';
 
+interface Version {
+  error: string;
+  installedVersion: string;
+  latestVersion: string;
+}
 export interface TypescriptServiceResponse {
   isTypescript: boolean;
-  isLatest: boolean;
+  version?: Version;
 }
 
 export const isTypescript = async (
@@ -12,21 +17,35 @@ export const isTypescript = async (
   const dependencies = packageConfig.dependencies;
   for (const [dependency, version] of Object.entries({ ...devDependencies, ...dependencies })) {
     if (dependency === 'typescript') {
-      const response = await fetch('https://registry.npmjs.org/typescript/latest', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      let versionObject: Version
+      try {
+        const response = await fetch('https://registry.npmjs.org/typescript/latest', {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const { version: latestVersion } = await response.json();
+        versionObject = {
+          error: "",
+          installedVersion: version,
+          latestVersion,
+        }
+      } catch (err) {
+        console.log(err)
+        versionObject = {
+          error: "unavailable",
+          installedVersion: version,
+          latestVersion:"",
+        }
+      }
 
-      const { version: latestVersion } = await response.json();
       return {
         isTypescript: true,
-        isLatest: version.endsWith(latestVersion),
+        version: versionObject,
       };
     }
   }
   return {
     isTypescript: false,
-    isLatest: false,
   };
 };

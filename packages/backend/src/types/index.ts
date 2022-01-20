@@ -1,5 +1,19 @@
+import Rollbar from 'rollbar';
+
+export interface Logger {
+  error: (
+    e: Error,
+    options?: {
+      message?: string | undefined;
+      data?: any;
+    },
+  ) => Rollbar.LogResult | undefined;
+  debug: (message: string, data?: any) => Rollbar.LogResult | undefined;
+}
+
 export interface Ctx {
   env: Bindings;
+  logger: Logger;
 }
 
 export interface IGithubAPIRepo {

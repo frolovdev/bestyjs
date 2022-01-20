@@ -7,8 +7,13 @@ type HandlerFunction = (
 
 export const handler = (handlerFunc: HandlerFunction) => {
   return async (request: Request, ctx: Ctx) => {
-    const { body, ...rest } = await handlerFunc(request, ctx);
+    try {
+      const { body, ...rest } = await handlerFunc(request, ctx);
 
-    return new Response(body ? JSON.stringify(body) : undefined, rest);
+      return new Response(body ? JSON.stringify(body) : undefined, rest);
+    } catch (error: any) {
+      const requestValue: any = await request.json();
+      ctx.logger.error(error, { message: 'handler', data: requestValue });
+    }
   };
 };

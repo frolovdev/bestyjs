@@ -41,6 +41,8 @@ jobs:
           secrets: |
             CLIENT_SECRET
             CLIENT_ID
+            ROLLBAR_TOKEN
         env:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          ROLLBAR_TOKEN: ${{ secrets.ROLLBAR_TOKEN }}

@@ -1,12 +1,29 @@
-import { PackageConfig } from 'src/types';
+import { PackageConfig } from '../types';
 
-export const isTypescript = (packageConfig: PackageConfig): boolean => {
+export interface TypescriptServiceResponse {
+  isTypescript: boolean;
+  isLatest: boolean;
+}
+
+export const isTypescript = async (packageConfig: PackageConfig): Promise<TypescriptServiceResponse> => {
   const devDependencies = packageConfig.devDependencies;
   const dependencies = packageConfig.dependencies;
-  for (const dependency of Object.keys({ ...devDependencies, ...dependencies })) {
+  const response = await fetch("https://registry.npmjs.org/typescript/latest", {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  const {version:latestVersion} = await response.json()
+  for (const [dependency, version] of Object.entries({ ...devDependencies, ...dependencies })) {
     if (dependency === 'typescript') {
-      return true;
+      return {
+        isTypescript: true,
+        isLatest: version.endsWith(latestVersion)
+      };
     }
   }
-  return false;
+  return {
+    isTypescript: false,
+    isLatest: false
+  }
 };

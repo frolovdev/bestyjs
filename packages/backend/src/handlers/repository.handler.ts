@@ -44,7 +44,7 @@ export const getRepos = handler(async (request) => {
           prettier: isPrettier({ directoryContent, packageConfig }),
           eslint: isEslint({ directoryContent, packageConfig }),
           jest: isJest({ directoryContent, packageConfig }),
-          typescript: isTypescript(packageConfig),
+          typescript: await isTypescript(packageConfig),
           cspell: isCspell({ packageConfig, directoryContent }),
           editorConfig: isEditorConfig(directoryContent),
         };

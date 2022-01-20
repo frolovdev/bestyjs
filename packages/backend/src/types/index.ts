@@ -1,4 +1,4 @@
-import { TypescriptServiceResponse } from "../services/typescript.service";
+import { TypescriptServiceResponse } from '../services/typescript.service';
 
 export interface Ctx {
   env: Bindings;

@@ -5,6 +5,11 @@ import toast from 'react-hot-toast';
 import { LoadingState } from 'types';
 import { Loader } from './Loader';
 
+interface Version {
+  error?: string;
+  installedVersion: string;
+  latestVersion: string;
+}
 interface IRepoResponse {
   owner: string;
   name: string;
@@ -13,7 +18,7 @@ interface IRepoResponse {
   contentUrl: string;
   typescript: {
     isTypescript: boolean;
-    isLatest: boolean;
+    version?: Version;
   };
   eslint: boolean;
   prettier: boolean;
@@ -30,7 +35,10 @@ const placeHolderRepos: IRepoResponse[] = [
     language: 'Typescript',
     typescript: {
       isTypescript: true,
-      isLatest: true,
+      version: {
+        latestVersion: "latest",
+        installedVersion: "latest",
+      },
     },
     eslint: true,
     prettier: false,
@@ -46,7 +54,11 @@ const placeHolderRepos: IRepoResponse[] = [
     language: 'Typescript',
     typescript: {
       isTypescript: false,
-      isLatest: false,
+      version: {
+        error: "unavailable",
+        installedVersion: "4.5.1",
+        latestVersion: "",
+      },
     },
     eslint: true,
     prettier: true,
@@ -157,7 +169,7 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                           {repo.typescript.isTypescript ? '✅' : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                          {repo.typescript.isLatest ? '✅' : '❌'}
+                          {repo.typescript.version && !repo.typescript.version.error && repo.typescript.version.installedVersion.endsWith(repo.typescript.version.latestVersion) ? '✅' : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.eslint ? '✅' : '❌'}

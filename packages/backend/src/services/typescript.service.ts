@@ -1,7 +1,7 @@
 import { PackageConfig } from '../types';
 
 interface Version {
-  error: string;
+  error?: string;
   installedVersion: string;
   latestVersion: string;
 }
@@ -26,7 +26,6 @@ export const isTypescript = async (
         });
         const { version: latestVersion } = await response.json();
         versionObject = {
-          error: "",
           installedVersion: version,
           latestVersion,
         }

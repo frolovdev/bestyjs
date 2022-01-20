@@ -11,7 +11,10 @@ interface IRepoResponse {
   fullName: string;
   language: string;
   contentUrl: string;
-  typescript: boolean;
+  typescript: {
+    isTypescript: boolean,
+    isLatest: boolean,
+  };
   eslint: boolean;
   prettier: boolean;
   jest: boolean;
@@ -25,7 +28,10 @@ const placeHolderRepos: IRepoResponse[] = [
     fullName: 'random/anyspec',
     contentUrl: 'random',
     language: 'Typescript',
-    typescript: true,
+    typescript: {
+      isTypescript: true,
+      isLatest: true,
+    },
     eslint: true,
     prettier: false,
     jest: false,
@@ -38,7 +44,10 @@ const placeHolderRepos: IRepoResponse[] = [
     fullName: 'random/anyspec',
     contentUrl: 'random',
     language: 'Typescript',
-    typescript: false,
+    typescript: {
+      isTypescript: false,
+      isLatest: false,
+    },
     eslint: true,
     prettier: true,
     jest: true,
@@ -103,6 +112,12 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                     Latest typescript version 
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Eslint
                     </th>
                     <th
@@ -139,7 +154,10 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                           {repo.name}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                          {repo.typescript ? '✅' : '❌'}
+                          {repo.typescript.isTypescript? '✅' : '❌'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                          {repo.typescript.isLatest? '✅' : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.eslint ? '✅' : '❌'}

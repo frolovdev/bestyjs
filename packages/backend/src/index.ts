@@ -3,15 +3,20 @@ import { handleOptions } from './cors';
 import { authenticate, isAuthenticated } from './handlers/auth.handler';
 import { notFound } from './handlers/notFound.handler';
 import { getRepos } from './handlers/repository.handler';
+import { test } from './handlers/test.handler';
+import { createLogger } from './lib/logger';
 
 const router = Router();
 router.post('/api/oauth/token', authenticate);
 router.get('/api/me', isAuthenticated);
 router.get('/api/repos', getRepos);
+router.get('/api/test', test);
 router.all('*', notFound);
 
 export async function handleRequest(request: Request, env: Bindings) {
-  const ctx = { env };
+  const logger = createLogger(env);
+  const ctx = { env, logger };
+
   if (request.method === 'OPTIONS') {
     return handleOptions(request, ctx);
   }

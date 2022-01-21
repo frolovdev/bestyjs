@@ -3,4 +3,5 @@ interface Bindings {
   CLIENT_SECRET: string;
   ENVIRONMENT: string;
   DOMAIN: string;
+  ROLLBAR_TOKEN: string;
 }

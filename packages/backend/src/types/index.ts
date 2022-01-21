@@ -1,3 +1,5 @@
+import { TypescriptServiceResponse } from '../services/typescript.service';
+
 export interface Ctx {
   env: Bindings;
 }
@@ -19,7 +21,7 @@ export interface IRepoResponse {
   prettier: boolean;
   eslint: boolean;
   jest: boolean;
-  typescript: boolean;
+  typescript: TypescriptServiceResponse;
   cspell: boolean;
   editorConfig: boolean;
 }

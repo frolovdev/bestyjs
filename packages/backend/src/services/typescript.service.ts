@@ -17,7 +17,7 @@ export const isTypescript = async (
   const dependencies = packageConfig.dependencies;
   for (const [dependency, version] of Object.entries({ ...devDependencies, ...dependencies })) {
     if (dependency === 'typescript') {
-      let versionObject: Version
+      let versionObject: Version;
       try {
         const response = await fetch('https://registry.npmjs.org/typescript/latest', {
           headers: {
@@ -28,14 +28,14 @@ export const isTypescript = async (
         versionObject = {
           installedVersion: version,
           latestVersion,
-        }
+        };
       } catch (err) {
-        console.log(err)
+        console.log(err);
         versionObject = {
-          error: "unavailable",
+          error: 'unavailable',
           installedVersion: version,
-          latestVersion:"",
-        }
+          latestVersion: '',
+        };
       }
 
       return {

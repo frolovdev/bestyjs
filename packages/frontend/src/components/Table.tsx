@@ -36,8 +36,8 @@ const placeHolderRepos: IRepoResponse[] = [
     typescript: {
       isTypescript: true,
       version: {
-        latestVersion: "latest",
-        installedVersion: "latest",
+        latestVersion: 'latest',
+        installedVersion: 'latest',
       },
     },
     eslint: true,
@@ -55,9 +55,9 @@ const placeHolderRepos: IRepoResponse[] = [
     typescript: {
       isTypescript: false,
       version: {
-        error: "unavailable",
-        installedVersion: "4.5.1",
-        latestVersion: "",
+        error: 'unavailable',
+        installedVersion: '4.5.1',
+        latestVersion: '',
       },
     },
     eslint: true,
@@ -169,7 +169,13 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                           {repo.typescript.isTypescript ? '✅' : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                          {repo.typescript.version && !repo.typescript.version.error && repo.typescript.version.installedVersion.endsWith(repo.typescript.version.latestVersion) ? '✅' : '❌'}
+                          {repo.typescript.version &&
+                          !repo.typescript.version.error &&
+                          repo.typescript.version.installedVersion.endsWith(
+                            repo.typescript.version.latestVersion,
+                          )
+                            ? '✅'
+                            : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.eslint ? '✅' : '❌'}

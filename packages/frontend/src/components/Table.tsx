@@ -5,13 +5,21 @@ import toast from 'react-hot-toast';
 import { LoadingState } from 'types';
 import { Loader } from './Loader';
 
+interface Version {
+  error?: string;
+  installedVersion: string;
+  latestVersion: string;
+}
 interface IRepoResponse {
   owner: string;
   name: string;
   fullName: string;
   language: string;
   contentUrl: string;
-  typescript: boolean;
+  typescript: {
+    isTypescript: boolean;
+    version?: Version;
+  };
   eslint: boolean;
   prettier: boolean;
   jest: boolean;
@@ -25,7 +33,13 @@ const placeHolderRepos: IRepoResponse[] = [
     fullName: 'random/anyspec',
     contentUrl: 'random',
     language: 'Typescript',
-    typescript: true,
+    typescript: {
+      isTypescript: true,
+      version: {
+        latestVersion: 'latest',
+        installedVersion: 'latest',
+      },
+    },
     eslint: true,
     prettier: false,
     jest: false,
@@ -38,7 +52,14 @@ const placeHolderRepos: IRepoResponse[] = [
     fullName: 'random/anyspec',
     contentUrl: 'random',
     language: 'Typescript',
-    typescript: false,
+    typescript: {
+      isTypescript: false,
+      version: {
+        error: 'unavailable',
+        installedVersion: '4.5.1',
+        latestVersion: '',
+      },
+    },
     eslint: true,
     prettier: true,
     jest: true,
@@ -103,6 +124,12 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      Latest typescript version
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Eslint
                     </th>
                     <th
@@ -139,7 +166,16 @@ export const Table: FC<Props> = ({ isPlaceholder = false }) => {
                           {repo.name}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                          {repo.typescript ? '✅' : '❌'}
+                          {repo.typescript.isTypescript ? '✅' : '❌'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                          {repo.typescript.version &&
+                          !repo.typescript.version.error &&
+                          repo.typescript.version.installedVersion.endsWith(
+                            repo.typescript.version.latestVersion,
+                          )
+                            ? '✅'
+                            : '❌'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                           {repo.eslint ? '✅' : '❌'}

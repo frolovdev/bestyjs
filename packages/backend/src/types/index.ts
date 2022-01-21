@@ -1,4 +1,5 @@
 import Rollbar from 'rollbar';
+import { TypescriptServiceResponse } from '../services/typescript.service';
 
 export interface Logger {
   error: (
@@ -33,7 +34,7 @@ export interface IRepoResponse {
   prettier: boolean;
   eslint: boolean;
   jest: boolean;
-  typescript: boolean;
+  typescript: TypescriptServiceResponse;
   cspell: boolean;
   editorConfig: boolean;
 }

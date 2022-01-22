@@ -4,4 +4,5 @@ interface Bindings {
   ENVIRONMENT: string;
   DOMAIN: string;
   SENTRY_DSN: string;
+  SENTRY_RELEASE: string;
 }

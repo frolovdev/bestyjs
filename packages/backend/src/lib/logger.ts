@@ -13,7 +13,6 @@ export const error =
 
     sentry.withScope((scope) => {
       scope.setExtra('meta', options);
-      console.log('qwpkoEPJOibqwoeopQW');
       sentry.captureException(e);
     });
   };
@@ -33,13 +32,12 @@ export const debug = (env: Bindings, sentry: Toucan) => (message: string, data?:
 export function createLogger(request: Request, env: Bindings, context: ExecutionContext): Logger {
   const sentry = new Toucan({
     dsn: env.SENTRY_DSN,
+    environment: env.ENVIRONMENT,
     context,
     request,
     allowedHeaders: ['user-agent'],
     allowedSearchParams: /(.*)/,
-    rewriteFrames: {
-      root: '/',
-    },
+    release: env.SENTRY_RELEASE,
   });
   return { error: error(env, sentry), debug: debug(env, sentry) };
 }

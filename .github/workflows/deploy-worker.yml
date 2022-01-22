@@ -32,6 +32,18 @@ jobs:
       - name: Install modules
         run: yarn --immutable
 
+      - name: Prepare release
+        id: prepare-release
+        run: |
+          # Install Sentry CLI
+          curl -sL https://sentry.io/get-cli/ | bash
+
+          # Create new Sentry release
+          export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+
+          echo "::set-output name=sentry_release::$SENTRY_RELEASE"
+        shell: bash
+
       - name: Deploy
         uses: cloudflare/wrangler-action@1.3.0
         with:
@@ -42,27 +54,25 @@ jobs:
             CLIENT_SECRET
             CLIENT_ID
             SENTRY_DSN
+            SENTRY_RELEASE
         env:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_RELEASE: ${{ steps.prepare-release.outputs.sentry_release }}
 
       - name: Upload source maps
         run: |
-          # Install Sentry CLI
-          curl -sL https://sentry.io/get-cli/ | bash
-
-          # Create new Sentry release
-          export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+          # Create new deploy for this Sentry release
           sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
+          # Upload
+          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --ext mjs --ext map packages/backend/dist
           sentry-cli releases finalize $SENTRY_RELEASE
 
-          # Create new deploy for this Sentry release
           sentry-cli releases deploys $SENTRY_RELEASE new -e $SENTRY_DEPLOY_ENVIRONMENT
-
-          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps packages/backend/dist
         env:
+          SENTRY_RELEASE: ${{ steps.prepare-release.outputs.sentry_release }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}

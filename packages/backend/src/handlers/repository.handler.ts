@@ -13,7 +13,7 @@ import { isCspell } from '../services/cspell.service';
 import { isEditorConfig } from '../services/editorconfig.service';
 import { handler } from '../lib/handler';
 
-export const getRepos = handler(async (request) => {
+export const getRepos = handler(async (request, ctx) => {
   const accessToken = extractCookie(request.headers.get('Cookie') || '');
   if (!accessToken) {
     return {
@@ -51,8 +51,8 @@ export const getRepos = handler(async (request) => {
         responseBody = [...responseBody, repository];
       }
     }
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    ctx.logger.error(err, { message: 'getRepos' });
     return {
       status: 500,
     };

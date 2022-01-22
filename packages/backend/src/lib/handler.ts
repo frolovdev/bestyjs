@@ -12,8 +12,7 @@ export const handler = (handlerFunc: HandlerFunction) => {
 
       return new Response(body ? JSON.stringify(body) : undefined, rest);
     } catch (error: any) {
-      const requestValue: any = await request.json();
-      ctx.logger.error(error, { message: 'handler', data: requestValue });
+      ctx.logger.error(error, { message: 'handler' });
     }
   };
 };

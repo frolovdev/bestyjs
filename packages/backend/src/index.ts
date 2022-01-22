@@ -13,8 +13,8 @@ router.get('/api/repos', getRepos);
 router.get('/api/test', test);
 router.all('*', notFound);
 
-export async function handleRequest(request: Request, env: Bindings) {
-  const logger = createLogger(env);
+export async function handleRequest(request: Request, env: Bindings, context: ExecutionContext) {
+  const logger = createLogger(request, env, context);
   const ctx = { env, logger };
 
   if (request.method === 'OPTIONS') {

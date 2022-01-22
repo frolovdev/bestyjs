@@ -1,4 +1,3 @@
-import Rollbar from 'rollbar';
 import { TypescriptServiceResponse } from '../services/typescript.service';
 
 export interface Logger {
@@ -8,8 +7,8 @@ export interface Logger {
       message?: string | undefined;
       data?: any;
     },
-  ) => Rollbar.LogResult | undefined;
-  debug: (message: string, data?: any) => Rollbar.LogResult | undefined;
+  ) => void;
+  debug: (message: string, data?: any) => void;
 }
 
 export interface Ctx {

@@ -1,8 +1,3 @@
-import {
-  getGithubDirectoryContent,
-  getGithubRepos,
-  getPackageConfig,
-} from '../services/github.service';
 import { extractCookie } from '../cookie';
 import { isPrettier } from '../services/prettier.service';
 import { IRepoResponse } from '../types';
@@ -12,17 +7,17 @@ import { isTypescript } from '../services/typescript.service';
 import { isCspell } from '../services/cspell.service';
 import { isEditorConfig } from '../services/editorconfig.service';
 import { handler } from '../lib/handler';
+import { throwInternalServerError, throwUnauthorized } from '../lib/errors';
+import { getGithubRepos, getPackageConfig, getGithubDirectoryContent } from '../sdk/github.sdk';
 
 export const getRepos = handler(async (request, ctx) => {
   const accessToken = extractCookie(request.headers.get('Cookie') || '');
   if (!accessToken) {
-    return {
-      status: 401,
-    };
+    throwUnauthorized();
   }
   let responseBody: IRepoResponse[] = [];
   try {
-    const githubRepositories = await getGithubRepos(accessToken);
+    const githubRepositories = await getGithubRepos(ctx, accessToken);
     for (const repo of githubRepositories) {
       if (
         repo.language &&
@@ -53,9 +48,7 @@ export const getRepos = handler(async (request, ctx) => {
     }
   } catch (err: any) {
     ctx.logger.error(err, { message: 'getRepos' });
-    return {
-      status: 500,
-    };
+    throwInternalServerError();
   }
 
   return {

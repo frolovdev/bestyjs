@@ -13,6 +13,22 @@ export const callGithub = async (path: string, fetchOptions: RequestInit): Promi
   return response;
 };
 
+export const getGithubReposByUsername = async (
+  ctx: Ctx,
+  username: string,
+): Promise<IGithubAPIRepo[]> => {
+  try {
+    const response = await callGithub(
+      `${githubApi}/users/${username}/repos?accept=application/vnd.github.v3+json&sort=updated&type=all`,
+      {},
+    );
+    return await response.json<IGithubAPIRepo[]>();
+  } catch (error: any) {
+    ctx.logger.error(error, { message: 'getGithubReposByUsername' });
+    return [];
+  }
+};
+
 export const getGithubRepos = async (ctx: Ctx, accessToken: string): Promise<IGithubAPIRepo[]> => {
   try {
     const response = await callGithub(

@@ -8,7 +8,7 @@ import { createLogger } from './lib/logger';
 const router = Router();
 router.post('/api/oauth/token', authenticate);
 router.get('/api/me', isAuthenticated);
-router.get('/api/repos', getRepos);
+router.get('/api/repos?', getRepos);
 router.all('*', notFound);
 
 export async function handleRequest(request: Request, env: Bindings, context: ExecutionContext) {

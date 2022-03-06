@@ -18,8 +18,9 @@ export const meQuery = async () => {
   });
 };
 
-export const reposQuery = async () => {
-  return await fetch(getDomain('/repos'), {
+export const reposQuery = async (username?: string) => {
+  const url = username ? `/repos?username=${username}` : `/repos`;
+  return await fetch(getDomain(url), {
     headers: {
       'Content-Type': 'application/json',
     },

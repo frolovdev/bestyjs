@@ -1,104 +1,11 @@
-import { reposQuery } from 'api';
 import { FC } from 'preact/compat';
-import { useEffect, useState } from 'preact/hooks';
-import toast from 'react-hot-toast';
-import { LoadingState } from 'types';
-import { Loader } from './Loader';
-
-interface Version {
-  error?: string;
-  installedVersion: string;
-  latestVersion: string;
-}
-interface IRepoResponse {
-  owner: string;
-  name: string;
-  fullName: string;
-  language: string;
-  contentUrl: string;
-  typescript: {
-    isTypescript: boolean;
-    version?: Version;
-  };
-  eslint: boolean;
-  prettier: boolean;
-  jest: boolean;
-  cspell: boolean;
-  editorConfig: boolean;
-}
-const placeHolderRepos: IRepoResponse[] = [
-  {
-    name: 'Your repo name',
-    owner: 'random',
-    fullName: 'random/anyspec',
-    contentUrl: 'random',
-    language: 'Typescript',
-    typescript: {
-      isTypescript: true,
-      version: {
-        latestVersion: 'latest',
-        installedVersion: 'latest',
-      },
-    },
-    eslint: true,
-    prettier: false,
-    jest: false,
-    cspell: true,
-    editorConfig: true,
-  },
-  {
-    name: 'Your another repo',
-    owner: 'random',
-    fullName: 'random/anyspec',
-    contentUrl: 'random',
-    language: 'Typescript',
-    typescript: {
-      isTypescript: false,
-      version: {
-        error: 'unavailable',
-        installedVersion: '4.5.1',
-        latestVersion: '',
-      },
-    },
-    eslint: true,
-    prettier: true,
-    jest: true,
-    cspell: false,
-    editorConfig: true,
-  },
-];
+import { IRepoResponse } from 'types/repo';
 
 interface Props {
-  isPlaceholder?: boolean;
+  repos: IRepoResponse[];
 }
 
-export const Table: FC<Props> = ({ isPlaceholder = false }) => {
-  const [loading, setLoading] = useState<LoadingState>(isPlaceholder ? 'fulfilled' : 'init');
-  const [repos, setRepos] = useState<IRepoResponse[]>(isPlaceholder ? placeHolderRepos : []);
-  useEffect(() => {
-    if (isPlaceholder) {
-      return;
-    }
-
-    const fetch = async () => {
-      setLoading('progress');
-      try {
-        const response = await reposQuery();
-        const repos = await response.json();
-        setRepos(repos);
-        setLoading('fulfilled');
-      } catch (err) {
-        setLoading('error');
-        toast.error('Something bad happened :(');
-      }
-    };
-    void fetch();
-  }, []);
-
-  if (loading !== 'fulfilled') {
-    return <Loader fullScreen />;
-  }
-
+export const Table: FC<Props> = ({ repos }) => {
   return (
     <div className="min-h-full flex items-center justify-center">
       <div className="flex flex-col">

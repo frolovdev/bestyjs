@@ -7,6 +7,7 @@ import { Login } from './pages/Login';
 import { PrivateRoute } from './components/PrivateRoute';
 import { RepositoryList } from 'pages/RepositoryList';
 import { LoadingState } from './types';
+import { PublicRepositoryList } from 'pages/PublicRepositoryList';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -61,6 +62,7 @@ const App = () => {
           redirectTo="/"
           component={RepositoryList}
         />
+        <Route path="/public-repo-list" component={PublicRepositoryList}></Route>
         <Route>404, Not Found!</Route>
       </Switch>
     </>

@@ -27,7 +27,11 @@ export const RepositoryList: FC = () => {
   }, []);
 
   if (loading !== 'fulfilled') {
-    return <Loader fullScreen />;
+    return (
+      <div className=" w-full h-full flex justify-center items-center">
+        <Loader fullScreen />
+      </div>
+    );
   }
 
   return (
